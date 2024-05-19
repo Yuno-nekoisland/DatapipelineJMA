@@ -1,0 +1,6 @@
+/gcp/umsa-terraform-datapipline.json
+/gcp/variable.tf
+/gcp/terraform.tfstate
+/gcp/terraform.tfstate.backup
+/gcp/terraform.tfstate.d/
+/gcp/.terraform/
