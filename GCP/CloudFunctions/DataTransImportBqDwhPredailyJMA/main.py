@@ -7,7 +7,7 @@ from datetime import datetime
 import pandas as pd
 
 @functions_framework.http
-def DataTransImportBqDwhMaxtemJMA(request):
+def DataTransImportBqDwhPredailyJMA(request):
     # 標準Loggerの設定
     logging.basicConfig(
             format = "[%(asctime)s][%(levelname)s] %(message)s",
@@ -27,21 +27,22 @@ def DataTransImportBqDwhMaxtemJMA(request):
 
     # BigQueryテーブルの参照を作成
     dataset_id = "datasetJMA"
-    table_id = "dwhMaxtemJMA"
+    table_id = "dwhPredailyJMA"
     table_ref = f"{bq_client.project}.{dataset_id}.{table_id}"
 
     try:
         #実行日の日付を宣言する
         current_ymd = datetime.now().strftime("%Y-%m-%d")
+        current_m = datetime.now().month
         current_d = datetime.now().strftime("%d")
 
         # Cloud Storageからダウンロードするファイルのパス
-        gcs_uri = f"gs://download_file_jma/maxtemperature/{current_ymd}_mxtemsadext00_rct.csv"
+        gcs_uri = f"gs://download_file_jma/predaily/{current_ymd}_predaily00_rct.csv"
 
         # CSVをPandasDataFrameに読み込む
         df = pd.read_csv(gcs_uri, encoding="utf-8", header=0)
         df = df.filter(
-                items=["観測所番号", "都道府県", "地点", "現在時刻(年)", "現在時刻(月)", "現在時刻(日)", f"{current_d}日の最高気温(℃)", "平年差（℃）", "前日差（℃）"]
+                items=["観測所番号", "都道府県", "地点", "現在時刻(年)", "現在時刻(月)", "現在時刻(日)", f"{current_d}日の値(mm)", "月平年比(%)", f"{current_m}月の平年値"]
                 , axis='columns')
 
         #行を絞り込む

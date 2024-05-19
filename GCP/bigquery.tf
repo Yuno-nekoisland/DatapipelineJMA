@@ -7,7 +7,7 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 ##table
-##dwhMaxtemJMA
+##dwhMaxtemJMA#################################
 resource "google_bigquery_table" "dwhMaxtemJMA" {
   dataset_id          = google_bigquery_dataset.dataset.dataset_id
   table_id            = "dwhMaxtemJMA"
@@ -69,7 +69,7 @@ EOF
 
 }
 
-##dwhMintemJMA
+##dwhMintemJMA#################################
 resource "google_bigquery_table" "dwhMintemJMA" {
   dataset_id          = google_bigquery_dataset.dataset.dataset_id
   table_id            = "dwhMintemJMA"
@@ -131,7 +131,7 @@ EOF
 
 }
 
-##dwhPredailyJMA
+##dwhPredailyJMA###############################
 resource "google_bigquery_table" "dwhPredailyJMA" {
   dataset_id          = google_bigquery_dataset.dataset.dataset_id
   table_id            = "dwhPredailyJMA"

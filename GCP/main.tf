@@ -57,8 +57,8 @@ resource "google_storage_bucket" "functions_bucket" {
   public_access_prevention = "enforced"
 }
 
-##DownloadDataJMA
-##PGM
+##DownloadDataJMA#####################################################################
+##ソースの格納先
 resource "google_storage_bucket_object" "cf_packages_DownloadDataJMA" {
   name   = "DownloadDataJMA.zip"
   bucket = google_storage_bucket.functions_bucket.name
@@ -99,15 +99,14 @@ resource "google_cloudfunctions2_function" "DownloadDataJMA" {
   }
 }
 
-##DataTransImportBqDwhMaxtemJMA
-##PGM
+##DataTransImportBqDwhMaxtemJMA#######################################################
+##ソースの格納先
 resource "google_storage_bucket_object" "cf_packages_DataTransImportBqDwhMaxtemJMA" {
   name   = "DataTransImportBqDwhMaxtemJMA.zip"
   bucket = google_storage_bucket.functions_bucket.name
   source = data.archive_file.zip_DataTransImportBqDwhMaxtemJMA.output_path
 }
 
-##PGM
 data "archive_file" "zip_DataTransImportBqDwhMaxtemJMA" {
   type        = "zip"
   source_dir  = "./CloudFunctions/DataTransImportBqDwhMaxtemJMA"
@@ -149,6 +148,114 @@ resource "google_cloudfunctions2_function" "DataTransImportBqDwhMaxtemJMA" {
     event_filters {
       attribute = "resourceName"
       value     = "projects/_/buckets/download_file_jma/objects/maxtemperature/*.csv"
+      operator  = "match-path-pattern"
+    }
+  }
+}
+
+##DataTransImportBqDwhMintemJMA#######################################################
+##ソースの格納先
+resource "google_storage_bucket_object" "cf_packages_DataTransImportBqDwhMintemJMA" {
+  name   = "DataTransImportBqDwhMintemJMA.zip"
+  bucket = google_storage_bucket.functions_bucket.name
+  source = data.archive_file.zip_DataTransImportBqDwhMintemJMA.output_path
+}
+
+data "archive_file" "zip_DataTransImportBqDwhMintemJMA" {
+  type        = "zip"
+  source_dir  = "./CloudFunctions/DataTransImportBqDwhMintemJMA"
+  output_path = "./CloudFunctions/DataTransImportBqDwhMintemJMA/DataTransImportBqDwhMintemJMA.zip"
+}
+
+##Functionsの設定
+resource "google_cloudfunctions2_function" "DataTransImportBqDwhMintemJMA" {
+  name     = "DataTransImportBqDwhMintemJMA"
+  project  = var.project_id
+  location = "asia-northeast1"
+  build_config {
+    runtime     = "python312"
+    entry_point = "DataTransImportBqDwhMintemJMA"
+    source {
+      storage_source {
+        bucket = google_storage_bucket.functions_bucket.name
+        object = google_storage_bucket_object.cf_packages_DataTransImportBqDwhMintemJMA.name
+      }
+    }
+  }
+  service_config {
+    environment_variables = {
+      TZ = "Asia/Tokyo"
+    }
+  }
+  event_trigger {
+    trigger_region = "asia-northeast1"
+    event_type     = "google.cloud.audit.log.v1.written"
+    retry_policy   = "RETRY_POLICY_DO_NOT_RETRY"
+    event_filters {
+      attribute = "serviceName"
+      value     = "storage.googleapis.com"
+    }
+    event_filters {
+      attribute = "methodName"
+      value     = "storage.objects.create"
+    }
+    event_filters {
+      attribute = "resourceName"
+      value     = "projects/_/buckets/download_file_jma/objects/mintemperature/*.csv"
+      operator  = "match-path-pattern"
+    }
+  }
+}
+
+##DataTransImportBqDwhPredailyJMA#######################################################
+##ソースの格納先
+resource "google_storage_bucket_object" "cf_packages_DataTransImportBqDwhPredailyJMA" {
+  name   = "DataTransImportBqDwhPredailyJMA.zip"
+  bucket = google_storage_bucket.functions_bucket.name
+  source = data.archive_file.zip_DataTransImportBqDwhPredailyJMA.output_path
+}
+
+data "archive_file" "zip_DataTransImportBqDwhPredailyJMA" {
+  type        = "zip"
+  source_dir  = "./CloudFunctions/DataTransImportBqDwhPredailyJMA"
+  output_path = "./CloudFunctions/DataTransImportBqDwhPredailyJMA/DataTransImportBqDwhPredailyJMA.zip"
+}
+
+##Functionsの設定
+resource "google_cloudfunctions2_function" "DataTransImportBqDwhPredailyJMA" {
+  name     = "DataTransImportBqDwhPredailyJMA"
+  project  = var.project_id
+  location = "asia-northeast1"
+  build_config {
+    runtime     = "python312"
+    entry_point = "DataTransImportBqDwhPredailyJMA"
+    source {
+      storage_source {
+        bucket = google_storage_bucket.functions_bucket.name
+        object = google_storage_bucket_object.cf_packages_DataTransImportBqDwhPredailyJMA.name
+      }
+    }
+  }
+  service_config {
+    environment_variables = {
+      TZ = "Asia/Tokyo"
+    }
+  }
+  event_trigger {
+    trigger_region = "asia-northeast1"
+    event_type     = "google.cloud.audit.log.v1.written"
+    retry_policy   = "RETRY_POLICY_DO_NOT_RETRY"
+    event_filters {
+      attribute = "serviceName"
+      value     = "storage.googleapis.com"
+    }
+    event_filters {
+      attribute = "methodName"
+      value     = "storage.objects.create"
+    }
+    event_filters {
+      attribute = "resourceName"
+      value     = "projects/_/buckets/download_file_jma/objects/predaily/*.csv"
       operator  = "match-path-pattern"
     }
   }
