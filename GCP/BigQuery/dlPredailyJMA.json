@@ -1,0 +1,164 @@
+[
+	{
+		"name": "observatoryNo",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "観測所番号"
+	},
+	{
+		"name": "prefectures",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "都道府県"
+	},
+	{
+		"name": "spot",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "地点"
+	},
+	{
+		"name": "internationalPointNo",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "国際地点番号"
+	},
+	{
+		"name": "currentTimeY",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(年)"
+	},
+	{
+		"name": "currentTimeMo",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(月)"
+	},
+	{
+		"name": "currentTimeD",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(日)"
+	},
+	{
+		"name": "currentTimeH",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(時)"
+	},
+	{
+		"name": "currentTimeMi",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(分)"
+	},
+	{
+		"name": "precipitation",
+		"type": "FLOAT",
+		"mode": "REQUIRED",
+		"description": "当日の値(mm)"
+	},
+	{
+		"name": "precipitationQuality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日の値の品質情報"
+	},
+	{
+		"name": "monthlyNormalRatio",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "月平年比(%)"
+	},
+	{
+		"name": "diffAveYear",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "月平年値"
+	},
+	{
+		"name": "diffAveYearQuality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "月平年値の品質情報"
+	},
+	{
+		"name": "extremeValue",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "極値更新"
+	},
+	{
+		"name": "extremeValuein10years",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "10年未満での極値更新"
+	},
+	{
+		"name": "observationHistoryofNo1",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値(mm)"
+	},
+	{
+		"name": "observationHistoryofNo1Quality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値の品質情報"
+	},
+	{
+		"name": "observationHistoryofNo1Y",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値の年"
+	},
+	{
+		"name": "observationHistoryofNo1M",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値の月"
+	},
+	{
+		"name": "observationHistoryofNo1D",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値の日"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値(mm)"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1Quality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の品質情報"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1Y",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の年"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1M",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の月"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1D",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の日"
+	},
+	{
+		"name": "statisticsStartYMD",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "統計開始年"
+	}
+]

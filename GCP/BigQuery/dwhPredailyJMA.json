@@ -1,0 +1,44 @@
+[
+	{
+		"name": "observatoryNo",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "観測所番号"
+	},
+	{
+		"name": "prefectures",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "都道府県"
+	},
+	{
+		"name": "spot",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "地点"
+	},
+	{
+		"name": "precipitation",
+		"type": "FLOAT",
+		"mode": "REQUIRED",
+		"description": "当日の値(mm)"
+	},
+	{
+		"name": "monthlyNormalRatio",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "月平年比(%)"
+	},
+	{
+		"name": "diffAveYear",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "月平年値"
+	},
+	{
+		"name": "currentTimeYMD",
+		"type": "DATE",
+		"mode": "REQUIRED",
+		"description": "現在時刻(年月日)"
+	}
+	]

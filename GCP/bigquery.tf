@@ -7,66 +7,79 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 ##table
+###datalake
+###dlMaxtemJMA##################################
+resource "google_bigquery_table" "dlMaxtemJMA" {
+  dataset_id = google_bigquery_dataset.dataset.dataset_id
+  table_id   = "dlMaxtemJMA"
+  project    = var.project_id
+  schema     = file("./BigQuery/dlMaxtemJMA.json")
+  external_data_configuration {
+    autodetect = false
+    source_uris = [
+      "gs://download_file_jma/maxtemperature/*.csv",
+    ]
+    csv_options {
+      quote             = ""
+      skip_leading_rows = 1
+    }
+    source_format = "CSV"
+  }
+  deletion_protection = false
+}
+
+###dlMintemJMA##################################
+resource "google_bigquery_table" "dlMintemJMA" {
+  dataset_id = google_bigquery_dataset.dataset.dataset_id
+  table_id   = "dlMintemJMA"
+  project    = var.project_id
+  schema     = file("./BigQuery/dlMintemJMA.json")
+  external_data_configuration {
+    autodetect = false
+    source_uris = [
+      "gs://download_file_jma/mintemperature/*.csv",
+    ]
+    csv_options {
+      quote             = ""
+      skip_leading_rows = 1
+    }
+    source_format = "CSV"
+  }
+  deletion_protection = false
+}
+
+###dlPredailyJMA################################
+resource "google_bigquery_table" "dlPredailyJMA" {
+  dataset_id = google_bigquery_dataset.dataset.dataset_id
+  table_id   = "dlPredailyJMA"
+  project    = var.project_id
+  schema     = file("./BigQuery/dlPredailyJMA.json")
+  external_data_configuration {
+    autodetect = false
+    source_uris = [
+      "gs://download_file_jma/predaily/*.csv",
+    ]
+    csv_options {
+      quote             = ""
+      skip_leading_rows = 1
+    }
+    source_format = "CSV"
+  }
+  deletion_protection = false
+}
+
 ##dwhMaxtemJMA#################################
 resource "google_bigquery_table" "dwhMaxtemJMA" {
   dataset_id          = google_bigquery_dataset.dataset.dataset_id
   table_id            = "dwhMaxtemJMA"
   deletion_protection = false
   clustering          = ["observatoryNo"]
-
   #time_partitioning {
   #  field                    = "dateday"
   #  type                     = "DAY"
   #  require_partition_filter = true
   #}
-
-  schema = <<EOF
-[
-  {
-    "name": "observatoryNo",
-    "type": "INTEGER",
-    "mode": "REQUIRED",
-    "description": "観測所番号"
-  },
-  {
-    "name": "prefectures",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "都道府県"
-  },
-  {
-    "name": "spot",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "地点"
-  },
-  {
-    "name": "maxTemp",
-    "type": "FLOAT",
-    "mode": "REQUIRED",
-    "description": "当日の最高気温(℃)"
-  },
-  {
-    "name": "diffAveYear",
-    "type": "FLOAT",
-    "mode": "NULLABLE",
-    "description": "平年差（℃）"
-  },
-  {
-    "name": "diffPreDay",
-    "type": "FLOAT",
-    "mode": "NULLABLE",
-    "description": "前日差（℃）"
-  },
-  {
-    "name": "currentTimeYMD",
-    "type": "DATE",
-    "mode": "REQUIRED",
-    "description": "現在時刻(年月日)"
-  }
-]
-EOF
-
+  schema = file("./BigQuery/dwhMaxtemJMA.json")
 }
 
 ##dwhMintemJMA#################################
@@ -75,59 +88,12 @@ resource "google_bigquery_table" "dwhMintemJMA" {
   table_id            = "dwhMintemJMA"
   deletion_protection = false
   clustering          = ["observatoryNo"]
-
   #time_partitioning {
   #  field                    = "dateday"
   #  type                     = "DAY"
   #  require_partition_filter = true
   #}
-
-  schema = <<EOF
-[
-  {
-    "name": "observatoryNo",
-    "type": "INTEGER",
-    "mode": "REQUIRED",
-    "description": "観測所番号"
-  },
-  {
-    "name": "prefectures",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "都道府県"
-  },
-  {
-    "name": "spot",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "地点"
-  },
-  {
-    "name": "minTemp",
-    "type": "FLOAT",
-    "mode": "REQUIRED",
-    "description": "当日の最低気温(℃)"
-  },
-  {
-    "name": "diffAveYear",
-    "type": "FLOAT",
-    "mode": "NULLABLE",
-    "description": "平年差（℃）"
-  },
-  {
-    "name": "diffPreDay",
-    "type": "FLOAT",
-    "mode": "NULLABLE",
-    "description": "前日差（℃）"
-  },
-  {
-    "name": "currentTimeYMD",
-    "type": "DATE",
-    "mode": "REQUIRED",
-    "description": "現在時刻(年月日)"
-  }
-]
-EOF
+  schema = file("./BigQuery/dwhMintemJMA.json")
 
 }
 
@@ -137,58 +103,10 @@ resource "google_bigquery_table" "dwhPredailyJMA" {
   table_id            = "dwhPredailyJMA"
   deletion_protection = false
   clustering          = ["observatoryNo"]
-
   #time_partitioning {
   #  field                    = "dateday"
   #  type                     = "DAY"
   #  require_partition_filter = true
   #}
-
-  schema = <<EOF
-[
-  {
-    "name": "observatoryNo",
-    "type": "INTEGER",
-    "mode": "REQUIRED",
-    "description": "観測所番号"
-  },
-  {
-    "name": "prefectures",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "都道府県"
-  },
-  {
-    "name": "spot",
-    "type": "STRING",
-    "mode": "REQUIRED",
-    "description": "地点"
-  },
-  {
-    "name": "precipitation",
-    "type": "FLOAT",
-    "mode": "REQUIRED",
-    "description": "当日の値(mm)"
-  },
-  {
-    "name": "monthlyNormalRatio",
-    "type": "INTEGER",
-    "mode": "NULLABLE",
-    "description": "月平年比(%)"
-  },
-  {
-    "name": "diffAveYear",
-    "type": "FLOAT",
-    "mode": "NULLABLE",
-    "description": "月平年値"
-  },
-  {
-    "name": "currentTimeYMD",
-    "type": "DATE",
-    "mode": "REQUIRED",
-    "description": "現在時刻(年月日)"
-  }
-]
-EOF
-
+  schema = file("./BigQuery/dwhPredailyJMA.json")
 }

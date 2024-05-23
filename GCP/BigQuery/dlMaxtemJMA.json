@@ -1,0 +1,224 @@
+[
+	{
+		"name": "observatoryNo",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "観測所番号"
+	},
+	{
+		"name": "prefectures",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "都道府県"
+	},
+	{
+		"name": "spot",
+		"type": "STRING",
+		"mode": "REQUIRED",
+		"description": "地点"
+	},
+	{
+		"name": "internationalPointNo",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "国際地点番号"
+	},
+	{
+		"name": "currentTimeY",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(年)"
+	},
+	{
+		"name": "currentTimeMo",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(月)"
+	},
+	{
+		"name": "currentTimeD",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(日)"
+	},
+	{
+		"name": "currentTimeH",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(時)"
+	},
+	{
+		"name": "currentTimeMi",
+		"type": "INTEGER",
+		"mode": "REQUIRED",
+		"description": "現在時刻(分)"
+	},
+	{
+		"name": "maxTemp",
+		"type": "FLOAT",
+		"mode": "REQUIRED",
+		"description": "当日の最高気温(℃)"
+	},
+	{
+		"name": "maxTempQuality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日の最高気温の品質情報"
+	},
+	{
+		"name": "maxTempH",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日の最高気温起時（時）"
+	},
+	{
+		"name": "maxTempM",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日の最高気温起時（分）"
+	},
+	{
+		"name": "maxTempTimeQuality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日の最高気温起時の品質情報"
+	},
+	{
+		"name": "diffAveYear",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "平年差（℃）"
+	},
+	{
+		"name": "diffPreDay",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "前日差（℃）"
+	},
+	{
+		"name": "gaitoshunM",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "該当旬（月）"
+	},
+	{
+		"name": "gaitoshunS",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "該当旬（旬）"
+	},
+	{
+		"name": "extremeValue",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "極値更新"
+	},
+	{
+		"name": "extremeValuein10years",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "10年未満での極値更新"
+	},
+	{
+		"name": "maxTempThisYearFlg",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "今年最高(1:該当,2:非該当)"
+	},
+	{
+		"name": "maxTempThisYear",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "今年の最高気温（℃)（当日まで）"
+	},
+	{
+		"name": "maxTempThisYearQuality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "今年の最高気温（当日まで）の品質情報"
+	},
+	{
+		"name": "maxTempThisYearY",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "今年の最高気温（当日まで）を観測した起日（年）"
+	},
+	{
+		"name": "maxTempThisYearM",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "今年の最高気温（当日まで）を観測した起日（月）"
+	},
+	{
+		"name": "maxTempThisYearD",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "今年の最高気温（当日まで）を観測した起日（日）"
+	},
+	{
+		"name": "observationHistoryofNo1",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値（℃）"
+	},
+	{
+		"name": "observationHistoryofNo1Quality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値の品質情報"
+	},
+	{
+		"name": "observationHistoryofNo1Y",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値を観測した起日（年）"
+	},
+	{
+		"name": "observationHistoryofNo1M",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値を観測した起日（月）"
+	},
+	{
+		"name": "observationHistoryofNo1D",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの観測史上1位の値を観測した起日（日）"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1",
+		"type": "FLOAT",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1Quality",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の品質情報"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1Y",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の起日（年）"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1M",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の起日（月）"
+	},
+	{
+		"name": "observationMonrhUntilPreDayofNo1D",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "当日までの当月の1位の値の起日（日）"
+	},
+	{
+		"name": "statisticsStartYMD",
+		"type": "INTEGER",
+		"mode": "NULLABLE",
+		"description": "統計開始年"
+	}
+]
