@@ -3,6 +3,11 @@ provider "google" {
   project     = var.project_id
   region      = "asia-northeast1"
 }
+provider "google-beta" {
+  credentials = file("${var.credential.data}")
+  project     = var.project_id
+  region      = "asia-northeast1"
+}
 
 locals {
   cs_foldernames = {
